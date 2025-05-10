@@ -1,0 +1,47 @@
+Informe técnico de la práctica
+
+Proyecto: Web Scraping de IMDb – Top 250 Películas
+Materia: Programación para Análisis de Datos
+Fecha: 11/05/2025
+Nombre del estudiante: Indira Hamdam Jarava / Giordan Ricardo Parra
+
+En la presente práctica se aplicó la técnica de web scraping para obtener datos sobre las 250 mejores películas de IMDb. El scraping es un proceso automatizado para extraer datos de sitios web, y en este caso se utilizó la librería BeautifulSoup de Python junto con requests para realizar la extracción de datos desde el sitio web de IMDb. Se utilizó un conjunto de herramientas como Pandas para organizar los datos extraídos y Matplotlib para realizar una visualización que permitiera entender mejor la distribución de calificaciones de las películas.
+
+La página seleccionada para realizar el scraping es el sitio web de IMDb, específicamente la sección del Top 250 de películas. Este listado incluye las 250 mejores películas basadas en las calificaciones de los usuarios, lo que permite analizar una muestra representativa de los títulos más populares y altamente calificados a nivel mundial. La información extraída incluye datos como el título de la película, el año de estreno, la calificación promedio de los usuarios, el número de votos y la duración de la película. Estos datos pueden ser utilizados para realizar análisis descriptivos sobre las preferencias cinematográficas a nivel global.
+
+El tema de interés en esta práctica está relacionado con el análisis de las características y la distribución de las calificaciones de las películas dentro del Top 250 de IMDb. El propósito es identificar patrones y posibles correlaciones entre la duración de las películas, el año de estreno y la calificación promedio que los usuarios le otorgan. El análisis ayudará a entender si existen ciertos factores que influyen de manera significativa en la calificación de las películas por parte de la audiencia.
+
+El principal objetivo de esta práctica es realizar un análisis de datos extraídos mediante web scraping desde IMDb para identificar patrones relevantes entre las películas más valoradas de la plataforma. Los objetivos específicos son los siguientes:
+
+1. Extraer los datos del Top 250 de IMDb: Obtener información sobre los títulos, años, calificaciones, duración y número de votos de las 250 mejores películas de IMDb.
+
+2. Procesar y organizar los datos: Utilizar la biblioteca Pandas para estructurar los datos en un formato adecuado para su análisis.
+
+3. Visualizar los resultados: Usar Matplotlib para generar gráficos que representen la distribución de las calificaciones y otros aspectos de las películas, como su duración.
+
+4. Analizar los resultados: Determinar si existen patrones en las calificaciones, la duración de las películas y otros factores que puedan influir en la clasificación de IMDb.
+
+El proceso de scraping se realizó siguiendo estos pasos:
+
+1. Solicitud HTTP: Utilizamos la biblioteca requests para enviar una solicitud HTTP GET a la página de IMDb que contiene el Top 250 de películas. La respuesta de la solicitud fue el HTML completo de la página, que contenía la información relevante.
+
+2. Parseo del Contenido HTML: Con la biblioteca BeautifulSoup, se analizó el contenido HTML. BeautifulSoup permite navegar por la estructura del documento y localizar las etiquetas necesarias, como <td>, <a>, <span>, y <strong>, que contienen los datos sobre las películas.
+
+3. Extracción de Datos: Se recorrió la estructura HTML utilizando los métodos find_all() y text.strip() para extraer los títulos, años de estreno, calificaciones y otros datos relevantes de las películas. Esta información se almacenó en una lista para su posterior procesamiento.
+
+4. Almacenamiento Estructurado: Los datos extraídos fueron convertidos en un DataFrame de Pandas para facilitar su análisis y manipulación. El DataFrame fue exportado a un archivo CSV para su posterior visualización.
+
+5. Manejo de Errores: Se implementaron validaciones básicas para asegurar que el script no fallara ante cambios menores en la estructura del HTML o ante errores de conexión al servidor.
+
+
+Los resultados obtenidos del scraping y análisis de los datos revelaron información interesante sobre el Top 250 de películas de IMDb. En particular, se observó que:
+
+* La mayoría de las películas con las mejores calificaciones tienden a ser de géneros como drama, acción y aventura.
+
+* La calificación promedio de las películas no muestra una distribución completamente uniforme, con un sesgo hacia calificaciones altas.
+
+* No se encontró una relación clara entre la duración de la película y la calificación promedio, lo que sugiere que la longitud de una película no es un factor determinante para su popularidad o valoración en IMDb.
+
+
+La práctica de scraping realizada ha sido exitosa en términos de extracción y análisis de datos desde IMDb. Gracias a las herramientas de Python como BeautifulSoup, requests y Pandas, se logró extraer y procesar los datos de las 250 mejores películas. Además, los resultados obtenidos permiten realizar un análisis preliminar sobre las características que podrían influir en las calificaciones de las películas. Sin embargo, sería necesario realizar un análisis más profundo y considerar otros factores externos que podrían influir en la calificación de una película, como el marketing, la dirección, el elenco, entre otros.
+
