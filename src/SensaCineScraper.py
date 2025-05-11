@@ -26,7 +26,7 @@ class SensaCineScraper:
     def analizar_pagina(self, html):
         soup = BeautifulSoup(html, 'html.parser')
         tarjetas = soup.find_all('div', class_='card entity-card entity-card-list cf')
-        print(f"🎬 Películas encontradas: {len(tarjetas)}")
+        print(f" Películas encontradas: {len(tarjetas)}")
 
         for tarjeta in tarjetas:
             titulo = tarjeta.find('a', class_='meta-title-link').get_text(strip=True)
@@ -47,12 +47,12 @@ class SensaCineScraper:
     def guardar_csv(self, nombre_archivo):
         df = self.obtener_dataframe()
         df.to_csv(nombre_archivo, index=False, encoding='utf-8-sig')
-        print(f"💾 CSV guardado como: {nombre_archivo}")
+        print(f"CSV guardado como: {nombre_archivo}")
 
     def guardar_excel(self, nombre_archivo):
         df = self.obtener_dataframe()
         df.to_excel(nombre_archivo, index=False, engine='openpyxl')
-        print(f"📄 Excel guardado como: {nombre_archivo}")
+        print(f"Excel guardado como: {nombre_archivo}")
 
     def ejecutar(self):
         html = self.solicitar_pagina()
