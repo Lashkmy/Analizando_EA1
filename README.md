@@ -18,6 +18,8 @@ Aplicar la metodología de desarrollo DevOps mediante GitHub Actions y contenedo
 - Crear un contenedor Docker para ejecutar localmente la aplicación.
 - Establecer un flujo de integración y despliegue continuo con GitHub Actions.
 - Documentar detalladamente el proceso y resultados en el repositorio.
+- Guardar los documentos generados en artefactos dentro de Actions y Docker Hub.
+- Enviar Auditoria por correo electronico para posteriores revisiones de calidad.
 
 ## ⚙️ Instalación y uso
 
