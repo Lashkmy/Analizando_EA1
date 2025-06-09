@@ -106,7 +106,7 @@ Analizando_EA1/
 └── README.md
 ```
 
-## 📚 Bibliografía
+## 📚 Bibliografía.
 
 - Sweigart, A. (2015). *Automate the Boring Stuff with Python*. No Starch Press.
 - McKinney, W. (2022). *Python for Data Analysis*. O'Reilly.
