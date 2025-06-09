@@ -72,6 +72,11 @@ class SensaCineScraper:
         email_password = os.getenv("EMAIL_PASSWORD")
         email_receiver = os.getenv("EMAIL_RECEIVER")
 
+        print(f"SMTP_SERVER={smtp_server}")
+        print(f"SMTP_PORT={smtp_port}")
+        print(f"EMAIL_SENDER={email_sender}")
+        print(f"EMAIL_RECEIVER={email_receiver}")
+        
         csv_path = "static/mejores_peliculas.csv"
 
         msg = EmailMessage()
