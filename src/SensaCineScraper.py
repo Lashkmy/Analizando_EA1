@@ -2,6 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from pathlib import Path
+import smtplib
+from email.message import EmailMessage
+import os
 
 class SensaCineScraper:
     def __init__(self, url):
@@ -57,7 +60,34 @@ class SensaCineScraper:
     def ejecutar(self):
         html = self.solicitar_pagina()
         self.analizar_pagina(html)
+    
+    def enviar_auditoria_email():
+        smtp_server = os.getenv("SMTP_SERVER")
+        smtp_port = int(os.getenv("SMTP_PORT", 587))
+        email_sender = os.getenv("EMAIL_SENDER")
+        email_password = os.getenv("EMAIL_PASSWORD")
+        email_receiver = os.getenv("EMAIL_RECEIVER")
 
+        csv_path = "static/mejores_peliculas.csv"
+
+        msg = EmailMessage()
+        msg["Subject"] = "Auditoría: Scraper ejecutado correctamente"
+        msg["From"] = email_sender
+        msg["To"] = email_receiver
+        msg.set_content("Adjunto encontrarás el reporte de las mejores películas generado por el scraper.")
+
+        # Adjuntar archivo CSV
+        with open(csv_path, "rb") as f:
+            file_data = f.read()
+            msg.add_attachment(file_data, maintype="text", subtype="csv", filename="mejores_peliculas.csv")
+
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(email_sender, email_password)
+            server.send_message(msg)
+            print("✅ Email enviado con éxito.")
+
+    
 
 # Uso de la clase SensaCineScraper.
 if __name__ == "__main__":
@@ -76,6 +106,16 @@ if __name__ == "__main__":
 
     scraper.guardar_csv(str(ruta_csv))
     scraper.guardar_excel(str(ruta_excel))
+
+    resumen = f"""
+    Auditoría automática:
+    Películas scrapeadas: {len(df)}
+    Puntaje promedio: {df['Puntuación'].astype(float).mean():.2f}
+    """
+    
+    scraper.enviar_auditoria_email()
+    
+    
 
 
 

@@ -22,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Paso 1.3 - Ejecutar scraper y generar CSV/Excel
+      - name: Paso 1.3 - Ejecutar scraper, generar CSV/Excel, y mandar la auditoria al correo electronico.
         run: python src/SensaCineScraper.py
 
       - name: Paso 1.4 - Subir archivos como artefactos
