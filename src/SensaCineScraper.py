@@ -61,7 +61,7 @@ class SensaCineScraper:
         html = self.solicitar_pagina()
         self.analizar_pagina(html)
     
-    def enviar_auditoria_email():
+    def enviar_auditoria_email(self):
         smtp_server = os.getenv("SMTP_SERVER")
         smtp_port = int(os.getenv("SMTP_PORT", 587))
         email_sender = os.getenv("EMAIL_SENDER")
