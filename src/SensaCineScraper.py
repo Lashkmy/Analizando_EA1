@@ -5,8 +5,11 @@ from pathlib import Path
 import smtplib
 from email.message import EmailMessage
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class SensaCineScraper:
+    
     def __init__(self, url):
         self.url = url
         self.headers = {
@@ -61,6 +64,7 @@ class SensaCineScraper:
         html = self.solicitar_pagina()
         self.analizar_pagina(html)
     
+
     def enviar_auditoria_email(self):
         smtp_server = os.getenv("SMTP_SERVER")
         smtp_port = int(os.getenv("SMTP_PORT", 587))
@@ -76,16 +80,29 @@ class SensaCineScraper:
         msg["To"] = email_receiver
         msg.set_content("Adjunto encontrarás el reporte de las mejores películas generado por el scraper.")
 
-        # Adjuntar archivo CSV
         with open(csv_path, "rb") as f:
             file_data = f.read()
             msg.add_attachment(file_data, maintype="text", subtype="csv", filename="mejores_peliculas.csv")
 
-        with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls()
-            server.login(email_sender, email_password)
-            server.send_message(msg)
-            print("✅ Email enviado con éxito.")
+        try:
+            if smtp_port == 465:
+                with smtplib.SMTP_SSL(smtp_server, smtp_port) as server:
+                    server.login(email_sender, email_password)
+                    server.send_message(msg)
+            else:
+                with smtplib.SMTP(smtp_server, smtp_port) as server:
+                    server.ehlo()
+                    server.starttls()
+                    server.ehlo()
+                    server.login(email_sender, email_password)
+                    server.send_message(msg)
+            print(" Email enviado con éxito.")
+        except ConnectionRefusedError:
+            print(" No se pudo conectar al servidor SMTP: conexión rechazada.")
+        except smtplib.SMTPAuthenticationError:
+            print(" Error de autenticación SMTP: revisa usuario y contraseña.")
+        except Exception as e:
+            print(f" Error inesperado al enviar el email: {e}")
 
     
 
