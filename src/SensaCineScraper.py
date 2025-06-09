@@ -106,15 +106,9 @@ if __name__ == "__main__":
 
     scraper.guardar_csv(str(ruta_csv))
     scraper.guardar_excel(str(ruta_excel))
-
-    resumen = f"""
-    Auditoría automática:
-    Películas scrapeadas: {len(df)}
-    Puntaje promedio: {df['Puntuación'].astype(float).mean():.2f}
-    """
     
     scraper.enviar_auditoria_email()
-    
+
     
 
 
