@@ -6,7 +6,7 @@ import smtplib
 from email.message import EmailMessage
 import os
 from dotenv import load_dotenv
-load_dotenv()
+# load_dotenv()
 
 class SensaCineScraper:
     
@@ -76,7 +76,7 @@ class SensaCineScraper:
         print(f"SMTP_PORT={smtp_port}")
         print(f"EMAIL_SENDER={email_sender}")
         print(f"EMAIL_RECEIVER={email_receiver}")
-        
+
         csv_path = "static/mejores_peliculas.csv"
 
         msg = EmailMessage()
